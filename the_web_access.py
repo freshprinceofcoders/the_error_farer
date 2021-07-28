@@ -1,3 +1,5 @@
+import requests
+'''
 from selenium import webdriver
 
 driver = webdriver.Chrome("./chromedriver.exe")
@@ -15,3 +17,9 @@ To.send_keys(Destination)
 Direct = driver.find_element_by_xpath('//*[@id="flights-search-controls-root"]/div/div/form/div[2]/div[4]/label[1]')
 Direct.click()
 #driver.close()
+'''
+
+
+with open("the_file.txt", "r") as f:
+    f_contents = f.read()
+    print(f_contents)
