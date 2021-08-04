@@ -6,13 +6,24 @@ def readFile(fileName):
     user_input = fileObj.read().splitlines() #puts the file into an array
     fileObj.close()
     
-    driver = webdriver.Chrome("./chromedriver.exe")
-
-    driver.get("https://www.skyscanner.net/")
     
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+
+    driver = webdriver.Chrome(executable_path= './chromedriver.exe', options=options)
+    
+
+    driver.get("https://www.skyscanner.net/")    
+    
+    cookie = driver.find_element_by_xpath('//*[@id="cookie-banner-root"]/div[1]/div/div[2]/button[1]')
+    cookie.click()
+    
+    
+    '''
     theTicket = user_input[1]
     Ticket = driver.find_element_by_xpath('//*[@id="flights-search-controls-root"]/div/div/form/div[1]/div')
-    Ticket.click(theTicket)
+    Ticket.click()
+    '''
     
     Destination = user_input[2]
     To = driver.find_element_by_xpath('//*[@id="fsc-destination-search"]')
@@ -21,7 +32,7 @@ def readFile(fileName):
     Home = user_input[3]
     From = driver.find_element_by_xpath('//*[@id="fsc-origin-search"]')
     From.send_keys(Home)
-    
+    '''
     DepartDate = user_input[4]
     Depart = driver.find_element_by_xpath('//*[@id="depart-fsc-datepicker-button"]/span')
     Depart.send_keys(DepartDate)
@@ -32,11 +43,12 @@ def readFile(fileName):
     
     theClass = user_input[6]
     Class = driver.find_element_by_xpath('//*[@id="search-controls-cabin-class-dropdown"]')
-    Class.click(theClass)
+    Class.click()
     
         
     theDirect = user_input[8]
     Direct = driver.find_element_by_xpath('//*[@id="flights-search-controls-root"]/div/div/form/div[2]/div[4]/label[1]')
-    Direct.click(theDirect)
+    Direct.click()
     #driver.close()
+    '''
 readFile('flightData.txt')
